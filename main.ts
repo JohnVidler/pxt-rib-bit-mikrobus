@@ -1,1 +1,115 @@
+//% block="Rib:Bit MikroBUS"
+//% color="#7b7ff2"
+//% icon="\u26A0"
+//% groups=[ "Serial Port", "Pin Functions" ]
+namespace RibBitMBus {
+    //% block="switch microbus $state \u26A0"
+    export function switchMBus(state: RibBit.OnOff = RibBit.OnOff.On): void {
+        RibBit.ribbit_mBus_en(state == RibBit.OnOff.On);
+    }
 
+    //% block="mikroBUS serial write line $text \u26A0"
+    //% group="Serial Port"
+    export function serialWriteLine(text: string): void {
+        return serialWriteString(`${text}\n`);
+    }
+
+    //% block="mikroBUS serial write value $field = $value \u26A0"
+    //% group="Serial Port"
+    //% value.shadow=math_number
+    export function serialWriteValue(field: string, value: any): void {
+        return;
+    }
+
+    //% block="mikroBUS serial write number $value \u26A0"
+    //% group="Serial Port"
+    export function serialWriteNumber(value: number = 0): void {
+        return;
+    }
+
+    //% block="mikroBUS serial write string $text \u26A0"
+    //% group="Serial Port"
+    export function serialWriteString(text: string): void {
+        return;
+    }
+
+    //% block="mikroBUS serial write numbers $values \u26A0"
+    //% group="Serial Port"
+    export function serialWriteNumbers(values: Array<number>): void {
+        return serialWriteString(`${values.join(", ")}\n`);
+    }
+
+    //% block="mikroBUS serial read line \u26A0"
+    //% group="Serial Port"
+    export function serialReadLine(): string {
+        return "";
+    }
+
+    //% block="mikroBUS serial read until $delimiter \u26A0"
+    //% group="Serial Port"
+    export function serialReadUntil(delimiter: string): string {
+        return "";
+    }
+
+    //% block="mikroBUS serial read string \u26A0"
+    //% group="Serial Port"
+    export function serialReadString(): string {
+        return "";
+    }
+
+    //% block="set mikroBUS serial baud to $baud \u26A0"
+    //% group="Serial Port"
+    //% advanced="true"
+    export function serialSetBaud(baud: number = 9600): void {
+        return;
+    }
+
+    //% block="on mikroBUS string received \u26A0"
+    //% draggableParameters="inline"
+    //% group="Serial Port"
+    //% advanced="true"
+    export function onStringReceived(cb: (text: string) => void): void {
+        return
+    }
+
+    //% block="on mikroBUS $delimiter received \u26A0"
+    //% draggableParameters="inline"
+    //% group="Serial Port"
+    //% advanced="true"
+    export function onDelimiterReceived(cb: (text: string) => void, delimiter: string = "\n"): void {
+        return
+    }
+
+    //% block="mikroBUS serial bytes available \u26A0"
+    //% group="Serial Port"
+    export function getBytesAvailable(): number {
+        return 0;
+    }
+
+    //% block="set mikroBUS PWM pin to $value \u26A0"
+    //% value.min=0
+    //% value.max=255
+    //% group="Pin Functions"
+    export function setPWMPin(value: number = 128): void {
+        return;
+    }
+
+    //% block="mikroBUS analog pin value \u26A0"
+    //% group="Pin Functions"
+    export function analogRead(): number {
+        return pins.analogReadPin(AnalogPin.P2);
+    }
+
+    //% block="mikroBUS analog pin set value to $value \u26A0"
+    //% group="Pin Functions"
+    export function analogWrite(value: number = 0): void {
+        return;
+    }
+
+    //% block="set select line to $state \u26A0"
+    //% group="Pin Functions"
+    //% advanced="true"
+    export function spiSelectMBus(state: boolean): void {
+        return;
+    }
+}
