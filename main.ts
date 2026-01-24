@@ -5,7 +5,10 @@
 namespace RibBitMBus {
     //% block="switch microbus $state \u26A0"
     export function switchMBus(state: RibBit.OnOff = RibBit.OnOff.On): void {
-        RibBit.ribbit_mBus_en(state == RibBit.OnOff.On);
+        if(state == RibBit.OnOff.On)
+            RibBit.ribbit_cmd( RibBit.Device.MBUS, RibBit.Command.POWER_ENABLE );
+        else
+            RibBit.ribbit_cmd( RibBit.Device.MBUS, RibBit.Command.POWER_DISABLE );
     }
 
     //% block="mikroBUS serial write line $text \u26A0"
