@@ -109,10 +109,17 @@ namespace RibBitMBus {
         return;
     }
 
-    //% block="set select line to $state \u26A0"
+    //% block="set mikroBUS select line to $state \u26A0"
     //% group="Pin Functions"
     //% advanced="true"
     export function spiSelectMBus(state: boolean): void {
         return;
+    }
+
+    //% block="reset mikroBUS port \u26A0"
+    //% group="Pin Functions"
+    //% advanced="true"
+    export function setResetPin(): void {
+        RibBit.ribbit_cmd( RibBit.Device.MBUS, RibBit.Command.RESET_DEVICE )
     }
 }
