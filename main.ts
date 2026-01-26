@@ -90,22 +90,22 @@ namespace RibBitMBus {
     }
 
     //% block="set mikroBUS PWM pin to $value \u26A0"
-    //% value.min=0
-    //% value.max=255
     //% group="Pin Functions"
-    export function setPWMPin(value: number = 128): void {
+    export function setPWMPin(value: number = 0): void {
+        pins.servoSetPulse( AnalogPin.P1, value );
         return;
     }
 
     //% block="mikroBUS analog pin value \u26A0"
     //% group="Pin Functions"
     export function analogRead(): number {
-        return pins.analogReadPin(AnalogPin.P2);
+        return pins.analogReadPin( AnalogPin.P1 );
     }
 
     //% block="mikroBUS analog pin set value to $value \u26A0"
     //% group="Pin Functions"
     export function analogWrite(value: number = 0): void {
+        pins.analogWritePin( AnalogPin.P1, value );
         return;
     }
 
