@@ -24,21 +24,21 @@ namespace RibBitMBus {
     //% group="Serial Port"
     //% value.shadow=math_number
     export function serialWriteValue(field: string, value: any): void {
-        return;
+        return serialWriteString(`${field} = ${value}\n`);
     }
 
     //% block="mikroBUS serial write number $value \u26A0"
     //% blockId="ribbit_mbus_serialwritenumber"
     //% group="Serial Port"
     export function serialWriteNumber(value: number = 0): void {
-        return;
+        return serialWriteString(`${value}`);
     }
 
     //% block="mikroBUS serial write string $text \u26A0"
     //% blockId="ribbit_mbus_serialwritetext"
     //% group="Serial Port"
     export function serialWriteString(text: string): void {
-        return;
+        RibBit.ribbit_serial_write( RibBit.Device.MBUS, Buffer.fromUTF8(text) );
     }
 
     //% block="mikroBUS serial write numbers $values \u26A0"
@@ -108,7 +108,6 @@ namespace RibBitMBus {
     //% group="Pin Functions"
     export function setPWMPin(value: number = 0): void {
         pins.servoSetPulse( AnalogPin.P0, value );
-        return;
     }
 
     //% block="mikroBUS analog pin value \u26A0"
@@ -123,7 +122,6 @@ namespace RibBitMBus {
     //% group="Pin Functions"
     export function analogWrite(value: number = 0): void {
         pins.analogWritePin( AnalogPin.P1, value );
-        return;
     }
 
     //% block="set mikroBUS select line to $state \u26A0"
