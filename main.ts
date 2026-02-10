@@ -73,6 +73,7 @@ namespace RibBitMBus {
     //% blockId="ribbit_mbus_serialsetbaud"
     //% group="Serial Port"
     //% advanced="true"
+    //% baud.defl=RibBit.SerialBaud.BAUD_9600
     export function serialSetBaud(baud: RibBit.SerialBaud = RibBit.SerialBaud.BAUD_9600 ): void {
         RibBit.ribbit_set_baud( baud );
     }
@@ -106,7 +107,7 @@ namespace RibBitMBus {
     //% blockId="ribbit_mbus_setpwm"
     //% group="Pin Functions"
     export function setPWMPin(value: number = 0): void {
-        pins.servoSetPulse( AnalogPin.P1, value );
+        pins.servoSetPulse( AnalogPin.P0, value );
         return;
     }
 
@@ -132,10 +133,13 @@ namespace RibBitMBus {
     //% group="Pin Functions"
     //% advanced="true"
     export function spiSelectMBus(state: boolean): void {
-        if( state )
-            RibBit.ribbit_cmd( RibBit.Device.MBUS, RibBit.Command.SPI_SELECT );
+        // Always assert all other devices as offline via marking an invalid device as 'selected'
+        RibBit.ribbit_cmd(RibBit.Device.INVALID, RibBit.Command.SPI_SELECT);
+
+        if( state === true )
+            pins.digitalWritePin( DigitalPin.P12, 0 );
         else
-            RibBit.ribbit_cmd(RibBit.Device.INVALID, RibBit.Command.SPI_SELECT);
+            pins.digitalWritePin( DigitalPin.P12, 1 );
     }
 
     //% block="reset mikroBUS port \u26A0"
