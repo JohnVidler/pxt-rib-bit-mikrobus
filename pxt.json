@@ -6,7 +6,7 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "pxt-rib-bit": "github:johnvidler/pxt-rib-bit#v0.0.10"
+        "pxt-rib-bit": "github:johnvidler/pxt-rib-bit#v0.1.0"
     },
     "files": [
         "README.md",
